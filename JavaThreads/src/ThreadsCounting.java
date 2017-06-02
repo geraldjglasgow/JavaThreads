@@ -46,4 +46,6 @@ public class ThreadsCounting implements Runnable {
     public int getThread(){
         return thread;
     }
+
+    public long getStart() { return start; }
 }
