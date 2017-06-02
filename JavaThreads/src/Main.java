@@ -3,6 +3,7 @@
  */
 
 public class Main {
+
     public static void main(String args[]) {
         int i;
         final long value = 1000000L; // value split up into segments to count using threads
