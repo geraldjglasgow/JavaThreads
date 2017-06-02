@@ -17,7 +17,7 @@ public class ThreadsCounting implements Runnable {
 
     /**
      * Function thread is running that is being timed
-     * This function counts from start to end
+     * This function counts from start to end.
      */
     public void run() {
         long time1 = System.nanoTime();
