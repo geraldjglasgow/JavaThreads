@@ -6,12 +6,11 @@ public class Main {
 
     public static void main(String args[]) {
         int i;
-        final long value = 1000000L; // value split up into segments to count using threads
+        final long value = 1000000000000L; // value split up into segments to count using threads
         final int cores = Runtime.getRuntime().availableProcessors(); //obtains thread count for CPU
         //final int cores = 2;
-
         long[][] frags = getFragments(cores, value);        // splits the problem up into fragments for each thread to run
-        Thread[] thread = new Thread[cores];                   // array of threads
+        Thread[] arr = new Thread[cores];                   // array of threads
         ThreadsCounting[] obj = new ThreadsCounting[cores]; // array of threading objects
 
 		/* Creating ThreadsCounting objects */
@@ -20,13 +19,13 @@ public class Main {
         }
 		/* Creating threads and starting them */
         for(i=0;i<cores;i++){
-            thread[i] = new Thread(obj[i]);
-            thread[i].start();
+            arr[i] = new Thread(obj[i]);
+            arr[i].start();
         }
         /* Joining threads (main doesn't continue executing until all threads finish running */
         for(i=0;i<cores;i++){
             try {
-                thread[i].join();
+                arr[i].join();
             } catch (InterruptedException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
