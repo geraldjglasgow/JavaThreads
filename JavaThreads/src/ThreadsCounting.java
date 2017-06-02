@@ -48,4 +48,5 @@ public class ThreadsCounting implements Runnable {
     }
 
     public long getStart() { return start; }
+    public long getEnd() { return end; }
 }
