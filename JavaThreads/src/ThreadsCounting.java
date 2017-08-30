@@ -28,17 +28,15 @@ public class ThreadsCounting implements Runnable {
         }
 
         long time2 = System.nanoTime();
-        this.time  = (double)((time2 - time1)/1000000000.0);
+        this.time  = ((time2 - time1)/1000000000.0);
+        System.out.println(start + " " + end);
     } // end run
 
     // setters and getters
-    public double getTime(){
-        return this.time;
-    }
+    public double getTime(){ return this.time; }
     public int getThread(){
         return thread;
     }
-
     public long getStart() { return start; }
     public long getEnd() { return end; }
 }
