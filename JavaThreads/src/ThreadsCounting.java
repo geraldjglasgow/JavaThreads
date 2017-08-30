@@ -31,18 +31,10 @@ public class ThreadsCounting implements Runnable {
         this.time  = (double)((time2 - time1)/1000000000.0);
     } // end run
 
-    /**
-     *
-     * @return time
-     */
+    // setters and getters
     public double getTime(){
         return this.time;
     }
-
-    /**
-     *
-     * @return thread
-     */
     public int getThread(){
         return thread;
     }
