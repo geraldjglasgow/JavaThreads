@@ -1,12 +1,13 @@
 /**
  * Created by SSLGhost on 6/1/17.
  */
+import java.text.DecimalFormat;
 
 public class Main {
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         int i;
-        final long value = 1000000000000L; // value split up into segments to count using threads
+        final long value = 1000000L; // value split up into segments to count using threads
         final int cores = Runtime.getRuntime().availableProcessors(); //obtains thread count for CPU
         //final int cores = 2;
         long[][] frags = getFragments(cores, value);        // splits the problem up into fragments for each thread to run
@@ -41,16 +42,19 @@ public class Main {
      * @param value Number to split up into segments for threads to count to
      * @return returns 2d array holding the threads starting and ending values for counting
      */
-    public static long[][] getFragments(int cores, long value){
-        long[][] segments = new long[cores][2];
+    public static long[][] getFragments(int cores, long value) {
+        DecimalFormat df = new DecimalFormat("0");
+        long[][] frags = new long[cores][2];
         long temp = 0L;
-        for(long i=1;i<cores+1;i++){
-            long x = value*(i/cores);
-            segments[(int)i-1][0] = temp;
-            segments[(int)i-1][1] = x;
-            temp = x+1;
+
+        for(double i = 1.0D; i < (double)(cores + 1); ++i) {
+            long x = Long.parseLong(df.format((double)value * (i / (double)cores)));
+            frags[(int)i - 1][0] = temp;
+            frags[(int)i - 1][1] = x;
+            temp = x + 1L;
         }
-        return segments;
+
+        return frags;
     }
 
     /**
@@ -61,9 +65,7 @@ public class Main {
     public static void printTime(ThreadsCounting[]obj, int cores){
         double sum = 0L;
         for(int i=0;i<obj.length;i++) {
-            sum += obj[i].getTime();
             System.out.println("Thread " + i + " ran in " + obj[i].getTime() + "seconds.");
         }
-        System.out.println("Average thread runtime: " + sum/(double)cores);
     }
 }
