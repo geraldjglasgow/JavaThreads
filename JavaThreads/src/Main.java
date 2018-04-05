@@ -7,7 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
         int i;
-        final long value = 1000000L; // value split up into segments to count using threads
+        final long value = 1000000000000L; // value split up into segments to count using threads
         final int cores = Runtime.getRuntime().availableProcessors(); //obtains thread count for CPU
         //final int cores = 2;
         long[][] frags = getFragments(cores, value);        // splits the problem up into fragments for each thread to run
@@ -65,7 +65,7 @@ public class Main {
     public static void printTime(ThreadsCounting[]obj, int cores){
         double sum = 0L;
         for(int i=0;i<obj.length;i++) {
-            System.out.println("Thread " + i + " ran in " + obj[i].getTime() + "seconds.");
+            System.out.println("Thread " + i + " ran in " + obj[i].getTime() + " seconds.");
         }
     }
 }
